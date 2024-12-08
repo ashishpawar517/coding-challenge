@@ -16,5 +16,16 @@ export class AccountingCalculator {
             .filter(account => account.account_category === 'expense')
             .reduce((sum, account) => sum + account.total_value, 0);
     }
+    calculateGrossProfitMargin(): number {
+        const salesValue = this.data
+            .filter(account => 
+                account.account_type === 'sales' && 
+                account.value_type === 'debit'
+            )
+            .reduce((sum, account) => sum + account.total_value, 0);
+        
+        const revenue = this.calculateRevenue();
+        return revenue !== 0 ? salesValue / revenue : 0;
+    }
 }
    
