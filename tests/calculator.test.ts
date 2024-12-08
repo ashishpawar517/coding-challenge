@@ -24,4 +24,8 @@ describe('AccountingCalculator', () => {
         expect(calculator.calculateRevenue()).toBe(1000);
     });
 
+    test('calculateExpenses returns correct total', () => {
+        expect(calculator.calculateExpenses()).toBe(500);
+    });
+    
 });
