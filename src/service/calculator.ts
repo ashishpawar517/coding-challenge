@@ -33,5 +33,52 @@ export class AccountingCalculator {
         const expenses = this.calculateExpenses();
         return revenue !== 0 ? (revenue - expenses) / revenue : 0;
     }
+    private calculateCurrentAssets(): number {
+        const validTypes = ['bank', 'current_accounts_receivable'];
+        
+        const debitAssets = this.data
+            .filter(account => 
+                account.account_category === 'assets' &&
+                account.value_type === 'debit' &&
+                validTypes.includes(account.account_type)
+            )
+            .reduce((sum, account) => sum + account.total_value, 0);
+
+        const creditAssets = this.data
+            .filter(account => 
+                account.account_category === 'assets' &&
+                account.value_type === 'credit' &&
+                validTypes.includes(account.account_type)
+            )
+            .reduce((sum, account) => sum + account.total_value, 0);
+
+        return debitAssets - creditAssets;
+    }
+    private calculateCurrentLiabilities(): number {
+        const validTypes = ['current_accounts_payable'];
+        
+        const creditLiabilities = this.data
+            .filter(account => 
+                account.account_category === 'liability' &&
+                account.value_type === 'credit' &&
+                validTypes.includes(account.account_type)
+            )
+            .reduce((sum, account) => sum + account.total_value, 0);
+
+        const debitLiabilities = this.data
+            .filter(account => 
+                account.account_category === 'liability' &&
+                account.value_type === 'debit' &&
+                validTypes.includes(account.account_type)
+            )
+            .reduce((sum, account) => sum + account.total_value, 0);
+
+        return creditLiabilities - debitLiabilities;
+    }
+    calculateWorkingCapitalRatio(): number {
+        const assets = this.calculateCurrentAssets();
+        const liabilities = this.calculateCurrentLiabilities();
+        return liabilities !== 0 ? assets / liabilities : 0;
+    }
 }
    
