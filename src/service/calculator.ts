@@ -11,5 +11,10 @@ export class AccountingCalculator {
             .filter(account => account.account_category === 'revenue')
             .reduce((sum, account) => sum + account.total_value, 0);
     }
+    calculateExpenses(): number {
+        return this.data
+            .filter(account => account.account_category === 'expense')
+            .reduce((sum, account) => sum + account.total_value, 0);
+    }
 }
    
