@@ -27,5 +27,12 @@ export class AccountingCalculator {
         const revenue = this.calculateRevenue();
         return revenue !== 0 ? salesValue / revenue : 0;
     }
+
+
+    calculateNetProfitMargin(): number {
+        const revenue = this.calculateRevenue();
+        const expenses = this.calculateExpenses();
+        return revenue !== 0 ? (revenue - expenses) / revenue : 0;
+    }
 }
    
