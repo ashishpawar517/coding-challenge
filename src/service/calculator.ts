@@ -34,7 +34,7 @@ export class AccountingCalculator {
         return revenue !== 0 ? (revenue - expenses) / revenue : 0;
     }
     private calculateCurrentAssets(): number {
-        const validTypes = ['bank', 'current_accounts_receivable'];
+        const validTypes = ['current','bank', 'current_accounts_receivable'];
         
         const debitAssets = this.data
             .filter(account => 
@@ -55,7 +55,7 @@ export class AccountingCalculator {
         return debitAssets - creditAssets;
     }
     private calculateCurrentLiabilities(): number {
-        const validTypes = ['current_accounts_payable'];
+        const validTypes = ['current','current_accounts_payable'];
         
         const creditLiabilities = this.data
             .filter(account => 
