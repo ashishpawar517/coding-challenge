@@ -95,6 +95,15 @@ If your program requires a special way to compile or a specific version of a too
 
 # Instructions to install and run the program
 
+## Project Structure
+
+- `src/` - Source code
+  - `types/` - TypeScript interfaces and types
+  - `utils/` - Utility functions for parsing and formatting
+  - `service/` - Core business logic
+- `tests/` - Unit tests for modules
+- `data.json` - input data.json file
+
 ## Installation
 
 ```bash
@@ -107,18 +116,12 @@ npm install
 npm start
 ```
 
+if you have data.json file placed somewhere else you can run `npm start path-to-json-file` For ex. `npm run start ../../data.json` . Then script will consider that file. By default script looks for data.json file in project directory.
+
 ## Running Tests
 
 ```bash
 npm test
 ```
-
-## Project Structure
-
-- `src/` - Source code
-  - `types/` - TypeScript interfaces and types
-  - `utils/` - Utility functions for parsing and formatting
-  - `service/` - Core business logic
-- `tests/` - Unit tests for modules
 
 **Thank you**
