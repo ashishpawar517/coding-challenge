@@ -121,6 +121,4 @@ npm test
   - `service/` - Core business logic
 - `tests/` - Unit tests for modules
 
-## Development
-
 **Thank you**
